@@ -1,10 +1,40 @@
 <template>
-  <div id="nav">
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
+  </div> -->
+  <div class="container">
+    <Header
+      title="Task tracker"
+      @toggle-add-task="toggleAddTask"
+      :showAddTask="showAddTask"
+    />
+    <router-view :showAddTask="showAddTask" />
+    <Footer />
   </div>
-  <router-view />
 </template>
+
+<script>
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+
+export default {
+  data() {
+    return {
+      showAddTask: false,
+    };
+  },
+  methods: {
+    toggleAddTask() {
+      this.showAddTask = !this.showAddTask;
+    },
+  },
+  components: {
+    Header,
+    Footer,
+  },
+};
+</script>
 
 <style>
 #app {
